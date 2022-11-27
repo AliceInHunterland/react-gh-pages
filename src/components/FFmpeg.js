@@ -98,14 +98,22 @@ function FFmpeg({ args, inFilename, outFilename, mediaType }) {
 
   useEffect(() => {
     if (ffmpeg === null) {
-      ffmpeg = createFFmpeg({
-        log: true,
-        // corePath: './static/js/ffmpeg-core.js',
-
-       // corePath: './static/js/ffmpeg-core.js',
-
-         corePath: 'https://unpkg.com/@ffmpeg/core@0.8.3/dist/ffmpeg-core.js',
-      });
+      // ffmpeg = createFFmpeg({
+      //   // log: true,
+      //   // corePath: './static/js/ffmpeg-core.js',
+      //
+      //  // corePath: './static/js/ffmpeg-core.js',
+      //
+      //    corePath: 'https://unpkg.com/@ffmpeg/core@0.8.5/dist/ffmpeg-core.js',
+      // });
+        ffmpeg = createFFmpeg({
+            // corePath: "http://localhost:3000/react-gh-pages/public/ffmpeg-core.js",
+            // Use public address if you don't want to host your own.
+            // corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js'
+            log: true,
+            // mainName: 'main',
+            // corePath: 'https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js'
+        });
     }
     ffmpeg.setLogger(({ type, message }) => {
       if (type !== 'info') {
