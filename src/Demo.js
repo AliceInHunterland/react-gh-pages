@@ -16,7 +16,7 @@ import vsDark from 'prism-react-renderer/themes/vsDark';
 import FFmpeg from './components/FFmpeg';
 // import DemoLinkCard from './components/DemoLinkCard';
 // import codepen from './assets/codepen.png';
-
+import ContactsIcon from './pngegg.png';
 const TESTDATA_URL = 'https://github.com/ffmpegwasm/testdata';
 
 const CONFIGS = {
@@ -78,7 +78,7 @@ function Demo() {
 
         <br></br>
         <br></br>
-        <img src="./pngegg.png" id="input-image"  align="center"
+        <img src={ContactsIcon} id="input-image"  align="center"
              className="input-image img-fluid rounded mx-auto d-block" alt="Input image" ></img>
       </Typography>
 
