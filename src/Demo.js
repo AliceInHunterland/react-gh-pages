@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  LiveProvider,
-  LiveEditor,
-  LiveError,
-  LivePreview,
-} from 'react-live';
+import {makeStyles} from '@material-ui/core/styles';
+import {LivePreview, LiveProvider,} from 'react-live';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import FFmpeg from './components/FFmpeg';
 // import DemoLinkCard from './components/DemoLinkCard';
 // import codepen from './assets/codepen.png';
 import ContactsIcon from './pngegg.png';
+
 const TESTDATA_URL = 'https://github.com/ffmpegwasm/testdata';
 
 const CONFIGS = {

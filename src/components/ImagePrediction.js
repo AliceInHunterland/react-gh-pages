@@ -1,7 +1,5 @@
-import {InferenceSession, Tensor} from "onnxruntime-web";
-// import * as Jimp from "jimp";
-import {useState} from "react";
-
+import {InferenceSession} from "onnxruntime-web";
+import {saveAs} from "file-saver";
 
 const ort = require("onnxruntime-web");
 
@@ -92,27 +90,6 @@ console.log("WIDTH",img.width)
 
 function processImage(img,width) {
 
-    // var imagePieces = [];
-    // for (var x = 0; x < numColsToCut; ++x) {
-    //     for (var y = 0; y < numRowsToCut; ++y) {
-    //         imagePieces.push(
-    //             context.getImageData(
-    //                 x * widthOfOnePiece,
-    //                 y * heightOfOnePiece,
-    //                 (x + 1) * widthOfOnePiece,
-    //                 (y + 1) * heightOfOnePiece
-    //             ).data
-    //         );
-    //
-    //         console.log("ONE PIECE DATA",
-    //             context.getImageData(
-    //                 x * widthOfOnePiece,
-    //                 y * heightOfOnePiece,
-    //                 (x + 1) * widthOfOnePiece,
-    //                 (y + 1) * heightOfOnePiece
-    //             ).data );
-    //     }
-    // }
 
     var imagePieces = [];
     for(var x = 0; x < numColsToCut; ++x) {
@@ -128,17 +105,6 @@ function processImage(img,width) {
 
 
     return imagePieces;}
-
-
-// function processImage(img, width) {
-//     const canvas = document.createElement("canvas"),
-//         ctx = canvas.getContext("2d");
-//
-//     canvas.width = width;
-//     canvas.height = canvas.width * (img.height / img.width);
-//     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-//     return [ctx.getImageData(0, 0, width, width).data];
-// }
 
 function imageDataToTensor(data, dims) {
     // 1. filter out alpha
@@ -184,19 +150,19 @@ function argMax(arr) {
 class SingletonAiModelSession {
 
     constructor() {
-
-        const modelFile = `./static/js/my_classification.onnx`;
+        const modelFile = `/my_classification.onnx`;
         console.log("loading onnx model");
         console.log(modelFile);
 
         this.session = (async () => {
-            return (await InferenceSession.create(modelFile,{executionProviders: ['wasm']}));
+            return (await InferenceSession.create(modelFile, {executionProviders: ['wasm']}));
         })();
-        SingletonAiModelSession.instance=this;
+        SingletonAiModelSession.instance = this;
     }
 
     static async getInstance() {
         if (!SingletonAiModelSession.instance) {
+
             SingletonAiModelSession.instance=new SingletonAiModelSession();
             console.log('I9N876543456789876543456789',SingletonAiModelSession.instance.session);
             SingletonAiModelSession.instance.session = await SingletonAiModelSession.instance.session;
@@ -209,9 +175,7 @@ class SingletonAiModelSession {
 async function run(inputTensor) {
     try {
 
-        const modelFile = `./static/js/my_classification.onnx`;
-        console.log("loading onnx model");
-        console.log(modelFile);
+
 
 
         const session =await SingletonAiModelSession.getInstance();

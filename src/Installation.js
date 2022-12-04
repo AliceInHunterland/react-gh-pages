@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Highlight, { defaultProps } from 'prism-react-renderer';
+import {makeStyles} from '@material-ui/core/styles';
+import Highlight, {defaultProps} from 'prism-react-renderer';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 
 const NPM_INSTALL_SCRIPTS=`
